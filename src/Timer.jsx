@@ -1,4 +1,4 @@
-import {useState, useRef} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import TimerControls from './TimerControls';
 import TimerDisplay from './TimerDisplay';
 
@@ -23,12 +23,22 @@ const Timer = ()=>{
     setIsRunning(!isRunning);
   };
 
+  
   const resetTimer = () =>{
     clearInterval(timerRef.current);
     setIsRunning(false);
     setTime(0);
     timerRef.current = null;
   }
+  
+  const startButtonRef = useRef(null);
+
+  useEffect(()=>{
+    if(startButtonRef.current){
+      startButtonRef.current.focus();
+    }
+  }, []);
+  
   return(
     <div className='max-w-md mx-auto mt-10 p-6 bg-gray-100 rounded-lg shadow-lg text-center'>
 
@@ -42,6 +52,7 @@ const Timer = ()=>{
           title={isRunning ? 'Pause' : 'Start'} 
           clickHandler={toggleTimer}
           color="green"
+          ref={startButtonRef}
         />
 
         <TimerControls 

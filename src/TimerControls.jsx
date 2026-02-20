@@ -1,8 +1,11 @@
-const TimerControls = ({title,clickHandler, color})=>{
+import { useEffect, useRef } from "react";
+
+const TimerControls = ({title,clickHandler, color,ref=null})=>{
   return (
     <button
+      ref = {ref}
       onClick = {clickHandler}
-      className="mt-3 text-white px-4 py-2 rounded ml-3 mr-3 hover:brightness-90"
+      className="mt-3 text-white px-4 py-2 rounded ml-5 mr-5 hover:brightness-90"
       style={{ backgroundColor: color}}
     >{title}
     </button>
