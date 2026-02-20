@@ -1,4 +1,6 @@
 import {useState, useRef} from 'react';
+import TimerControls from './TimerControls';
+
 
 const App = () => {
   const timerRef = useRef(null);
@@ -32,16 +34,17 @@ const App = () => {
       <h2 className="text-4xl font-semibold mt-4">
       ⏳Timer: {time}
       </h2>
+      <TimerControls 
+        title={isRunning ? 'Pause' : 'Start'} 
+        clickHandler={toggleTimer}
+        color="green"
+      />
 
-      <button 
-        onClick={toggleTimer}
-        className="mt-3 bg-green-500 text-white px-4 py-2 rounded hover: bg-green-600 mr-3">{isRunning ? 'Pause' : 'Start'}
-      </button>
-
-      <button 
-        onClick={resetTimer}
-        className="mt-3 bg-red-500 text-white px-4 py-2 rounded hover: bg-red-600">Reset
-      </button>
+      <TimerControls 
+        title="Reset"
+        clickHandler={resetTimer}
+        color="red"
+      />
     </div>
   );
 };
